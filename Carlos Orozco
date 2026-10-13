@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Obra — Carlos Orozco Esquivel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cafe-oscuro: #2C1A0E;
+      --cafe-medio: #4A2E1A;
+      --papel: #F0E6D3;
+      --papel-suave: #E8DAC5;
+      --dorado: #B8966A;
+      --dorado-suave: #D4B896;
+      --texto: #1C0F06;
+      --texto-suave: #5C3D28;
+      color-scheme: light;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { background: var(--papel); }
+
+    body {
+      background: var(--papel);
+      color: var(--texto);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.7;
+      padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    }
+
+    /* ── ENCABEZADO ── */
+    header {
+      background: var(--cafe-oscuro);
+      padding: 60px 24px 48px;
+      text-align: center;
+    }
+
+    .firma {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(11px, 2.5vw, 13px);
+      letter-spacing: 0.25em;
+      color: var(--dorado-suave);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .titulo-obra {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(38px, 9vw, 68px);
+      color: var(--papel);
+      line-height: 1.1;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .meta-obra {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+      color: var(--dorado);
+      letter-spacing: 0.15em;
+    }
+
+    /* ── CONTENIDO ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--papel-suave);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .seccion-etiqueta {
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--dorado);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-size: clamp(26px, 5vw, 36px);
+      color: var(--cafe-oscuro);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: var(--texto-suave);
+      line-height: 1.8;
+      max-width: 62ch;
+    }
+
+    p + p { margin-top: 1em; }
+
+    /* ── SÍMBOLOS ── */
+    .simbolos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--papel-suave);
+      margin-top: 32px;
+      border: 1px solid var(--papel-suave);
+    }
+
+    .simbolo-item {
+      background: var(--papel);
+      padding: 24px 20px;
+    }
+
+    .simbolo-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cafe-oscuro);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .simbolo-desc {
+      font-size: 13px;
+      color: var(--texto-suave);
+      line-height: 1.6;
+    }
+
+    /* ── GALERÍA DE FOTOS ── */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 32px;
+    }
+
+    .foto-placeholder {
+      aspect-ratio: 4/3;
+      background: var(--cafe-medio);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .foto-placeholder.grande {
+      grid-column: 1 / -1;
+      aspect-ratio: 16/9;
+    }
+
+    .foto-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .foto-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--dorado-suave);
+      opacity: 0.7;
+    }
+
+    /* ── VIDEOS ── */
+    .videos {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .video-placeholder {
+      aspect-ratio: 16/9;
+      background: var(--cafe-oscuro);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid var(--cafe-medio);
+    }
+
+    .video-placeholder svg {
+      opacity: 0.5;
+    }
+
+    .video-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--dorado-suave);
+      opacity: 0.7;
+    }
+
+    /* Aquí van los iframes reales de YouTube */
+    .video-embed {
+      aspect-ratio: 16/9;
+      width: 100%;
+      border: none;
+    }
+
+    /* ── FICHA TÉCNICA ── */
+    .ficha {
+      margin-top: 28px;
+      display: grid;
+      gap: 1px;
+      background: var(--papel-suave);
+      border: 1px solid var(--papel-suave);
+    }
+
+    .ficha-fila {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      background: var(--papel);
+    }
+
+    .ficha-campo {
+      padding: 14px 16px;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--dorado);
+      font-weight: 400;
+      border-right: 1px solid var(--papel-suave);
+      display: flex;
+      align-items: center;
+    }
+
+    .ficha-valor {
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--texto-suave);
+    }
+
+    /* ── CERTIFICADO ── */
+    .certificado {
+      margin-top: 32px;
+      border: 1px solid var(--dorado);
+      padding: 40px 36px;
+      position: relative;
+      background: var(--papel);
+    }
+
+    .certificado::before {
+      content: '';
+      position: absolute;
+      inset: 6px;
+      border: 1px solid var(--dorado-suave);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .cert-titulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: var(--dorado);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .cert-declaracion {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(18px, 3.5vw, 24px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cafe-oscuro);
+      line-height: 1.5;
+      margin-bottom: 32px;
+    }
+
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 32px;
+      margin-bottom: 36px;
+    }
+
+    .cert-dato-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--dorado);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .cert-dato-valor {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: var(--texto);
+    }
+
+    .cert-firma-area {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--papel-suave);
+    }
+
+    .firma-linea {
+      border-bottom: 1px solid var(--cafe-oscuro);
+      height: 40px;
+      margin-bottom: 8px;
+    }
+
+    .firma-etiqueta {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--dorado);
+    }
+
+    .cert-numero {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--dorado);
+      text-align: right;
+      margin-bottom: 4px;
+    }
+
+    .cert-numero-label {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--dorado-suave);
+      text-align: right;
+      display: block;
+    }
+
+    /* ── PIE ── */
+    footer {
+      background: var(--cafe-oscuro);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: var(--papel);
+      font-weight: 300;
+      margin-bottom: 6px;
+    }
+
+    .footer-meta {
+      font-size: 11px;
+      color: var(--dorado);
+      letter-spacing: 0.15em;
+    }
+
+    @media (max-width: 500px) {
+      .ficha-fila { grid-template-columns: 1fr; }
+      .ficha-campo { border-right: none; border-bottom: 1px solid var(--papel-suave); }
+      .cert-grid { grid-template-columns: 1fr; }
+      .cert-firma-area { grid-template-columns: 1fr; }
+      .galeria { grid-template-columns: 1fr; }
+      .foto-placeholder.grande { grid-column: auto; }
+      .certificado { padding: 28px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <span class="firma">Carlos Orozco Esquivel</span>
+    <h1 class="titulo-obra">Título de la Obra</h1>
+    <p class="meta-obra">Técnica mixta · 2024 · Edición única</p>
+  </header>
+
+  <main>
+
+    <!-- RESEÑA -->
+    <section>
+      <span class="seccion-etiqueta">Reseña</span>
+      <h2>Lo que evoca</h2>
+      <p>Aquí va tu descripción de la obra — lo que evoca, el estado emocional que habita, la primera impresión que buscas en quien la contempla. Esta es la voz de la obra antes de ser explicada.</p>
+      <p>Un segundo párrafo si lo necesitas: el contexto en que surgió, la historia detrás del encargo, lo que encontraste en el proceso.</p>
+    </section>
+
+    <!-- SIMBOLISMOS -->
+    <section>
+      <span class="seccion-etiqueta">Simbolismos</span>
+      <h2>Elementos de la obra</h2>
+      <p>Cada elemento fue elegido por lo que porta, no solo por lo que representa visualmente.</p>
+
+      <div class="simbolos">
+        <div class="simbolo-item">
+          <span class="simbolo-nombre">El Águila</span>
+          <span class="simbolo-desc">Visión expandida, capacidad de ver desde lo alto sin perder el detalle.</span>
+        </div>
+        <div class="simbolo-item">
+          <span class="simbolo-nombre">La Raíz</span>
+          <span class="simbolo-desc">Origen que sostiene, memoria familiar que no se nombra pero que lo forma todo.</span>
+        </div>
+        <div class="simbolo-item">
+          <span class="simbolo-nombre">El Espejo</span>
+          <span class="simbolo-desc">El momento de reconocimiento: lo que se ve en el otro es siempre reflejo.</span>
+        </div>
+        <div class="simbolo-item">
+          <span class="simbolo-nombre">Añade símbolo</span>
+          <span class="simbolo-desc">Descripción de lo que representa y por qué fue incluido en esta obra.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section>
+      <span class="seccion-etiqueta">Proceso</span>
+      <h2>El camino de la obra</h2>
+      <p>Fotografías del proceso de creación — bocetos, capas intermedias, el taller, los materiales.</p>
+
+      <div class="galeria">
+        <div class="foto-placeholder grande">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#F0E6D3" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span class="foto-label">Foto principal del proceso</span>
+        </div>
+        <div class="foto-placeholder">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F0E6D3" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span class="foto-label">Boceto</span>
+        </div>
+        <div class="foto-placeholder">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F0E6D3" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span class="foto-label">Detalle</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section>
+      <span class="seccion-etiqueta">Video</span>
+      <h2>En movimiento</h2>
+      <p>Documentación en video del proceso y la obra terminada.</p>
+
+      <div class="videos">
+        <!-- Reemplaza este bloque con tu iframe de YouTube:
+             <iframe class="video-embed" src="https://www.youtube.com/embed/TU_VIDEO_ID" allowfullscreen></iframe>
+        -->
+        <div class="video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F0E6D3" stroke-width="1">
+            <circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="#F0E6D3" opacity="0.4"/>
+          </svg>
+          <span class="video-label">Video del proceso · YouTube</span>
+        </div>
+        <div class="video-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#F0E6D3" stroke-width="1">
+            <circle cx="12" cy="12" r="10"/><polygon points="10,8 16,12 10,16" fill="#F0E6D3" opacity="0.4"/>
+          </svg>
+          <span class="video-label">Obra terminada · YouTube</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- FICHA TÉCNICA -->
+    <section>
+      <span class="seccion-etiqueta">Ficha técnica</span>
+      <h2>Datos de la obra</h2>
+
+      <div class="ficha">
+        <div class="ficha-fila">
+          <span class="ficha-campo">Título</span>
+          <span class="ficha-valor">Título de la obra</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Año</span>
+          <span class="ficha-valor">2024</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Técnica</span>
+          <span class="ficha-valor">Técnica mixta sobre tela</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Dimensiones</span>
+          <span class="ficha-valor">100 × 80 cm</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Soporte</span>
+          <span class="ficha-valor">Tela de lino</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Edición</span>
+          <span class="ficha-valor">Pieza única</span>
+        </div>
+        <div class="ficha-fila">
+          <span class="ficha-campo">Coleccionista</span>
+          <span class="ficha-valor">Nombre del cliente</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICADO -->
+    <section>
+      <span class="seccion-etiqueta">Autenticidad</span>
+      <h2>Certificado de autenticidad</h2>
+
+      <div class="certificado">
+        <span class="cert-titulo">Certificado de Autenticidad</span>
+
+        <p class="cert-declaracion">
+          Certifico que esta obra es original, única e irrepetible, creada enteramente por mi mano como expresión de mi práctica artística.
+        </p>
+
+        <div class="cert-grid">
+          <div>
+            <span class="cert-dato-label">Obra</span>
+            <span class="cert-dato-valor">Título de la obra</span>
+          </div>
+          <div>
+            <span class="cert-dato-label">Año de creación</span>
+            <span class="cert-dato-valor">2024</span>
+          </div>
+          <div>
+            <span class="cert-dato-label">Artista</span>
+            <span class="cert-dato-valor">Carlos Orozco Esquivel</span>
+          </div>
+          <div>
+            <span class="cert-dato-label">Registro</span>
+            <span class="cert-dato-valor">COE-2024-001</span>
+          </div>
+          <div>
+            <span class="cert-dato-label">Coleccionista</span>
+            <span class="cert-dato-valor">Nombre del cliente</span>
+          </div>
+          <div>
+            <span class="cert-dato-label">Fecha de entrega</span>
+            <span class="cert-dato-valor">DD de mes, AAAA</span>
+          </div>
+        </div>
+
+        <div style="text-align:right; margin-bottom: 8px;">
+          <p class="cert-numero">001</p>
+          <span class="cert-numero-label">Número de registro</span>
+        </div>
+
+        <div class="cert-firma-area">
+          <div>
+            <div class="firma-linea"></div>
+            <span class="firma-etiqueta">Firma del artista</span>
+          </div>
+          <div>
+            <div class="firma-linea"></div>
+            <span class="firma-etiqueta">Fecha</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p class="footer-nombre">Carlos Orozco Esquivel</p>
+    <p class="footer-meta">Arte simbólico · México</p>
+  </footer>
+
+</body>
+</html>
